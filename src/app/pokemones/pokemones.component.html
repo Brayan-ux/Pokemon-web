@@ -1,0 +1,51 @@
+<div class="top-prod py-2">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-4 col-lg-4 col-sm-4 col-xm-12" *ngFor="let p of bdd.pokemones">
+            <div class="card text-center mt-1 ml-1 mr-1 md-1">
+                <img class="card-img-top align-self-center" alt="Error al cargar la imagen"
+                    src="{{p.imagenes.front_default}}" style="width:50%">
+                <div class="card-body">
+                    <p class="card-text">{{p.id}}</p><br>
+                    <h6 class="card-title">{{p.nombre}}</h6>
+                    <div *ngFor="let t of p.tipos">
+                        {{t.type.name}}
+                    </div>
+                    <button class="btn btn-dark" (click)="mostrar(p.id)">Mas
+                        informacion</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}" *ngIf="this.bdd.sel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{this.bdd.sel.nombre}}</h4>
+                <button type="button" class="btn btn-danger" (click)="ocultar()">
+                    Cerrar
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 class="card-title">Tipos:</h6>
+                <div *ngFor="let t of this.bdd.sel.tipos">
+                    {{t.type.name}}
+                </div><br>
+                <h6 class="card-title">Habilidades:</h6>
+                <div *ngFor="let h of this.bdd.sel.hab">
+                    {{h.ability.name}}
+                </div><br>
+                <h6 class="card-title">Movimientos:</h6>
+                <div *ngFor="let m of this.bdd.sel.mov">
+                    {{m.move.name}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="ocultar()">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
