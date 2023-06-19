@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './servicios/auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { EquiposComponent } from './equipos/equipos.component';
-
 @NgModule({
   declarations: [
     AppComponent,

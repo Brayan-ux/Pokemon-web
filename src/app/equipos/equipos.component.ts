@@ -8,7 +8,6 @@ import { BddService } from '../servicios/bdd/bdd.service';
   styleUrls: ['./equipos.component.css']
 })
 export class EquiposComponent {
-  equipos: Array<any> = new Array();
   displayStyle = "none";
   name = "";
 
@@ -39,7 +38,7 @@ export class EquiposComponent {
 
   crear() {
     this.ocultar();
-    this.equipos.push({ nombre: this.name, equipo: this.equipoTemp });
+    this.auth.equipos.push({ nombre: this.name, equipo: this.equipoTemp });
     this.name = "";
   }
 }

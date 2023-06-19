@@ -7,6 +7,8 @@ export class AuthService {
   name: string = "";
   loged: boolean = false;
   pass: string = "";
+  equipos: Array<any> = new Array();
+
   constructor() { }
 
   login(name: string, pass: string) {

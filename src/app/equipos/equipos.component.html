@@ -1,17 +1,17 @@
 <div *ngIf="this.auth.loged">
-    <div *ngIf="this.equipos.length == 0 ">
+    <div *ngIf="this.auth.equipos.length == 0 ">
         <div class="alert alert-warning alert-dismissable">
             <strong>¡Cuidado!</strong> No tienes ningun equipo creado, por favor crea alguno.
             <button class="btn btn-warning" (click)="nuevo()">Crear</button>
         </div>
     </div>
-    <div class="top-prod py-2" *ngIf="this.equipos.length != 0">
+    <div class="top-prod py-2" *ngIf="this.auth.equipos.length != 0">
         <div class="alert alert-success alert-dismissable">
             <strong>¡Hola!</strong> Mostrando todos los equipos.
             <button class="btn btn-success" (click)="nuevo()">Crear</button>
         </div>
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-4 col-lg-4 col-sm-4 col-xm-12" *ngFor="let e of equipos">
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xm-12" *ngFor="let e of auth.equipos">
                 <div class="card text-center mt-1 ml-1 mr-1 md-1">
                     <p class="card-text">{{e.nombre}}</p><br>
                     <div class="card-body">

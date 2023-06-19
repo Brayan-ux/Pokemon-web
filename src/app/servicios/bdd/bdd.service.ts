@@ -14,21 +14,17 @@ export class BddService {
     this.pokemones = new Array();
     this.iniciales = new Array();
     for (let id = 1; id < 152; id++) {
-      this.http.get("https://pokeapi.co/api/v2/pokemon/" + id + "/").subscribe((req: any) => {
+      this.http.get("http://localhost:8080/pokemones").subscribe((req: any) => {
         this.pokemones.push({
-          id: id,
-          nombre: req.name,
-          tipos: req.types,
-          imagenes: req.sprites,
-          hab: req.abilities,
-          mov: req.moves
+          id: req.PokeID,
+          nombre: req.Nombre,
+          descripcion: req.Descripcion
         });
         if (id == 1 || id == 4 || id == 7) {
           this.iniciales.push({
-            id: id,
-            nombre: req.name,
-            tipos: req.types,
-            imagenes: req.sprites
+            id: req.PokeID,
+            nombre: req.Nombre,
+            descripcion: req.Descripcion
           });
         }
         this.ordenar();
