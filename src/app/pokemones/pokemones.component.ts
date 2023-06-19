@@ -8,7 +8,6 @@ import { BddService } from '../servicios/bdd/bdd.service';
 })
 export class PokemonesComponent {
 
-  visible: boolean = false;
   displayStyle = "none";
 
   constructor(public bdd: BddService) {
@@ -17,7 +16,6 @@ export class PokemonesComponent {
   mostrar(id: any) {
     this.bdd.sel = this.bdd.pokemones[id-1];
     this.displayStyle = "block";
-    console.log(this.bdd.sel.mov)
   }
 
   ocultar() {

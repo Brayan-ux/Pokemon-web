@@ -10,7 +10,19 @@
                 <a class="nav-link" routerLink="pokemones">Pokemones</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="equipos">Equipos</a>
+                <a class="nav-link" routerLink="equipos" *ngIf="this.auth.loged">Equipos</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" *ngIf="!this.auth.loged">
+                <button class="btn btn-outline-primary" type="button" (click)="mostrar()">
+                    Iniciar sesion
+                </button>
+            </li>
+            <li class="nav-item" *ngIf="this.auth.loged">
+                <button class="btn btn-outline-primary" type="button" (click)="this.logout()">
+                    Cerrar sesion
+                </button>
             </li>
         </ul>
         <form class="d-flex input-group w-auto">
@@ -21,3 +33,33 @@
         </form>
     </div>
 </nav>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Iniciar Sesion</h4>
+                <button type="button" class="btn btn-danger" (click)="ocultar()">
+                    Cerrar
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" [(ngModel)]="name" class="form-control" aria-describedby="emailHelp"
+                            placeholder="Introduce tu nombre" [ngModelOptions]="{standalone: true}">
+                        <small id="emailHelp" class="form-text text-muted">Jamas compartiremos tus datos con
+                            nadie.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" placeholder="Constraseña" [(ngModel)]="pass"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                </form>
+                <button class="btn btn-primary" (click)="login()">Iniciar sesion</button>
+            </div>
+        </div>
+    </div>
+</div>

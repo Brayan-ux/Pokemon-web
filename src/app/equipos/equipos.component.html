@@ -1,0 +1,80 @@
+<div *ngIf="this.auth.loged">
+    <div *ngIf="this.equipos.length == 0 ">
+        <div class="alert alert-warning alert-dismissable">
+            <strong>¡Cuidado!</strong> No tienes ningun equipo creado, por favor crea alguno.
+            <button class="btn btn-warning" (click)="nuevo()">Crear</button>
+        </div>
+    </div>
+    <div class="top-prod py-2" *ngIf="this.equipos.length != 0">
+        <div class="alert alert-success alert-dismissable">
+            <strong>¡Hola!</strong> Mostrando todos los equipos.
+            <button class="btn btn-success" (click)="nuevo()">Crear</button>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xm-12" *ngFor="let e of equipos">
+                <div class="card text-center mt-1 ml-1 mr-1 md-1">
+                    <p class="card-text">{{e.nombre}}</p><br>
+                    <div class="card-body">
+                        <div class="card text-center mt-1 ml-1 mr-1 md-1" *ngFor="let p of e.equipo">
+                            <p class="card-text">{{p.nombre}}</p><br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!this.auth.loged">
+    <div class="alert alert-warning alert-dismissable">
+        <strong>¡Cuidado!</strong> Estas tratando de acceder a los equipos sin estar registrado, inicia sesion por
+        favor.
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Nuevo</h4>
+                <button type="button" class="btn btn-danger" (click)="ocultar()">
+                    Cerrar
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" [(ngModel)]="name" class="form-control"
+                            placeholder="Nombre del equipo pokemon" [ngModelOptions]="{standalone: true}">
+                        <small id="emailHelp" class="form-text text-muted">Nombre de tu equipo pokemon.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>PokeId</label>
+                        <input type="number" [(ngModel)]="idTemp" class="form-control"
+                            placeholder="Introduce el ID del pokemon" [ngModelOptions]="{standalone: true}">
+                        <small id="emailHelp" class="form-text text-muted">Id del pokemon a elegir</small>
+                    </div>
+                    <button class="btn btn-primary" (click)="agregar()">Agregar ID</button>
+                    <div class="top-prod py-2">
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-md-4 col-lg-4 col-sm-4 col-xm-12" *ngFor="let p of equipoTemp">
+                                <div class="card text-center mt-1 ml-1 mr-1 md-1">
+                                    <img class="card-img-top align-self-center" alt="Error al cargar la imagen"
+                                        src="{{p.imagenes.front_default}}" style="width:50%">
+                                    <div class="card-body">
+                                        <p class="card-text">{{p.id}}</p><br>
+                                        <h6 class="card-title">{{p.nombre}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" (click)="crear()">Crear equipo</button>
+            </div>
+        </div>
+    </div>
+</div>
